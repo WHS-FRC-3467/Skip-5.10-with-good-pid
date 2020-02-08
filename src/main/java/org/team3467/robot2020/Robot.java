@@ -34,8 +34,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
     SmartDashboard.putNumber("Shooter Velocity", 0);
-    SmartDashboard.putNumber("Shooter Intake Velocity", 0);
-    SmartDashboard.putNumber("Belt Velocity", 0);
+    SmartDashboard.putNumber("Shooter Intake Velocity", 0.5);
+    SmartDashboard.putNumber("Belt Velocity", 0.5);
 
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.

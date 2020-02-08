@@ -76,13 +76,7 @@ public class ShooterSubsystem extends SubsystemBase
 
         // display PID coefficients on SmartDashboard
         SmartDashboard.putNumber("P Gain", kP);
-        SmartDashboard.putNumber("I Gain", kI);
-        SmartDashboard.putNumber("D Gain", kD);
-        SmartDashboard.putNumber("I Zone", kIz);
         SmartDashboard.putNumber("Feed Forward", kFF);
-        SmartDashboard.putNumber("Max Output", kMaxOutput);
-        SmartDashboard.putNumber("Min Output", kMinOutput);
-        SmartDashboard.putNumber("Velocity", kVelocity);
         
         shooterLeftMotor.setInverted(true);
         shooter_intake.setInverted(true);
@@ -104,37 +98,19 @@ public class ShooterSubsystem extends SubsystemBase
     {
         // read PID coefficients from SmartDashboard
     double p = SmartDashboard.getNumber("P Gain", 0);
-    double i = SmartDashboard.getNumber("I Gain", 0);
-    double d = SmartDashboard.getNumber("D Gain", 0);
-    double iz = SmartDashboard.getNumber("I Zone", 0);
     double ff = SmartDashboard.getNumber("Feed Forward", 0);
-    double max = SmartDashboard.getNumber("Max Output", 0);
-    double min = SmartDashboard.getNumber("Min Output", 0);
     // if PID coefficients on SmartDashboard have changed, write new values to controller
     if((p != kP)) { m_pidController1.setP(p); kP = p; }
-    if((i != kI)) { m_pidController1.setI(i); kI = i; }
-    if((d != kD)) { m_pidController1.setD(d); kD = d; }
-    if((iz != kIz)) { m_pidController1.setIZone(iz); kIz = iz; }
     if((ff != kFF)) { m_pidController1.setFF(ff); kFF = ff; }
-    if((max != kMaxOutput) || (min != kMinOutput)) { 
-      m_pidController1.setOutputRange(min, max); 
-      kMinOutput = min; kMaxOutput = max; 
-    }
+
     if((p != kP)) { m_pidController2.setP(p); kP = p; }
-    if((i != kI)) { m_pidController2.setI(i); kI = i; }
-    if((d != kD)) { m_pidController2.setD(d); kD = d; }
-    if((iz != kIz)) { m_pidController2.setIZone(iz); kIz = iz; }
     if((ff != kFF)) { m_pidController2.setFF(ff); kFF = ff; }
-    if((max != kMaxOutput) || (min != kMinOutput)) { 
-      m_pidController2.setOutputRange(min, max); 
-      kMinOutput = min; kMaxOutput = max; 
-    }
         if (on)
         {
             m_pidController1.setReference(speed, ControlType.kVelocity);
 
-            SmartDashboard.putNumber("Current Velocity 2", m_encoder1.getVelocity());
-            SmartDashboard.putNumber("Current Velocity 1", m_encoder2.getVelocity());
+            SmartDashboard.putNumber("Shooter Left Velocity", m_encoder1.getVelocity());
+            SmartDashboard.putNumber("Shooter Right Velocity", m_encoder2.getVelocity());
 
             SmartDashboard.putNumber("error", speed - m_encoder2.getVelocity());
         }
@@ -142,8 +118,8 @@ public class ShooterSubsystem extends SubsystemBase
         {
             m_pidController1.setReference(0.0, ControlType.kVelocity);
 
-            SmartDashboard.putNumber("Current Velocity 2", m_encoder1.getVelocity());
-            SmartDashboard.putNumber("Current Velocity 1", m_encoder2.getVelocity());
+            SmartDashboard.putNumber("Shooter Left Velocity", m_encoder1.getVelocity());
+            SmartDashboard.putNumber("Shooter Right Velocity", m_encoder2.getVelocity());
 
             SmartDashboard.putNumber("error", speed - m_encoder2.getVelocity());
         }
