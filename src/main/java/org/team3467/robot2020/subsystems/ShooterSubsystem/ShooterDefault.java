@@ -20,15 +20,11 @@ public class ShooterDefault extends CommandBase
 {
     private final ShooterSubsystem m_shooter;
     private final XboxController m_controller;
-    // private final Double m_intake_speed;
-    // private final Double m_shooter_speed;
 
     public ShooterDefault(final ShooterSubsystem subsystem, final XboxController controller)
     {
         m_shooter = subsystem;
         m_controller = controller;
-        // m_intake_speed = 0.0;
-        // m_shooter_speed = 0.0;
         addRequirements(m_shooter);
     }
 

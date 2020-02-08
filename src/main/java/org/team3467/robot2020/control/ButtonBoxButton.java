@@ -2,7 +2,7 @@ package org.team3467.robot2020.control;
 
 import edu.wpi.first.wpilibj2.command.button.Button;
 
-/**
+/*
  * A {@link Button} that gets its state from an {@link ButtbonBox}.
  */
 public class ButtonBoxButton extends Button {
